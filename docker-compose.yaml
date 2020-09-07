@@ -1,0 +1,28 @@
+version: "3.6"
+
+networks:
+  acustomnet:
+
+services:
+  sq:
+    image: sonarqube:8.4.2-community
+    stop_grace_period: 1m15s
+    networks:
+    - acustomnet
+    ports:
+    - 9000:9000
+    volumes:
+    - ./sq_data:/opt/sonarqube/data
+    - ./sq_extensions:/opt/sonarqube/extensions
+    - ./sq_logs:/opt/sonarqube/logs
+  scanner:
+    image: sonarsource/sonar-scanner-cli:4.4
+    networks:
+    - acustomnet
+    environment:
+    - SONAR_LOGIN=admin
+    - SONAR_PASSWORD=admin
+    - SONAR_PROJECT_BASE_DIR=/home/scanner-cli
+    volumes:
+    - ./project:/home/scanner-cli
+    command: sonar-scanner -Dsonar.host.url=http://sq:9000 -Dsonar.projectKey=projectkey -Dsonar.scm.provider=git
