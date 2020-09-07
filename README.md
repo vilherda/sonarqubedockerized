@@ -46,3 +46,7 @@ As you can see the report path is relative to project directory.
 
 - If may want to use [`Dependency-Check` plugin](https://github.com/dependency-check/dependency-check-sonar-plugin).
 - To include information about test coverage/test execution see [documentation](https://docs.sonarqube.org/latest/analysis/coverage/).
+
+## :copyright: License
+
+[CC0-1.0 License](https://creativecommons.org/publicdomain/zero/1.0/legalcode)
